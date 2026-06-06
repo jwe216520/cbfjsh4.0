@@ -7,30 +7,6 @@ console.log("靠北輔中 4.0 啟動成功");
 document.addEventListener("DOMContentLoaded", async () => {
 
     /* ================================
-       動態載入 Header
-    ================================= */
-
-    const headerRes = await fetch("components/header.html");
-    const headerHtml = await headerRes.text();
-
-    document.body.insertAdjacentHTML(
-        "afterbegin",
-        headerHtml
-    );
-
-    /* ================================
-       動態載入 Footer
-    ================================= */
-
-    const footerRes = await fetch("components/footer.html");
-    const footerHtml = await footerRes.text();
-
-    document.body.insertAdjacentHTML(
-        "beforeend",
-        footerHtml
-    );
-
-    /* ================================
        漢堡選單
     ================================= */
 
