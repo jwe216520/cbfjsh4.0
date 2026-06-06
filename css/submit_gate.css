@@ -1,0 +1,71 @@
+/* ================================
+   Submit Gate Page
+================================ */
+
+.submit-gate-card h2{
+    text-align: center;
+}
+
+.submit-rules-list{
+    max-width: 850px;
+    margin: 30px auto;
+    text-align: left;
+    line-height: 2;
+}
+
+.submit-rules-list li{
+    padding-left: 6px;
+    margin-bottom: 14px;
+}
+
+.agree-box{
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.agree-box input[type="checkbox"]{
+    width: 18px;
+    height: 18px;
+    accent-color: #ff4f87;
+    cursor: pointer;
+}
+
+.agree-box span{
+    color: #d7d7d7;
+    font-size: 15px;
+}
+
+.submit-enter-btn{
+    display: block;
+    margin: 28px auto 0 auto;
+}
+
+.submit-enter-btn:disabled{
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.submit-enter-btn:not(:disabled):hover{
+    transform: translateY(-3px);
+}
+
+/* RWD */
+
+@media(max-width: 768px){
+    .submit-rules-list{
+        padding: 0 10px;
+        margin: 20px auto;
+    }
+    .submit-rules-list li{
+        font-size: 14px;
+        line-height: 1.9;
+    }
+    .submit-enter-btn{
+        width: 90%;
+        max-width: 320px;
+    }
+}

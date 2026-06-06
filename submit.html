@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>靠北輔中 4.0 - 匿名投稿</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/submit.css">
+</head>
+
+<header>
+
+    <!-- Logo -->
+    <a href="index.html" class="logo-area">
+        <img src="assets/logo.png" alt="logo" class="logo-img">
+        <div class="logo-text">靠北輔中 4.0</div>
+    </a>
+
+    <!-- Hamburger（手機/平板用） -->
+    <button class="hamburger" id="hamburger-btn">
+        ☰
+    </button>
+
+    <!-- Navigation -->
+    <nav id="main-nav">
+
+        <a href="https://rpage.fjsh.cy.edu.tw/" target="_blank">輔仁中學校網</a>
+
+        <div class="dropdown">
+            <button class="dropbtn">關於靠輔</button>
+            <div class="dropdown-content">
+                <a href="about_intro.html">靠輔簡介</a>
+                <a href="about_history.html">靠輔歷史</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn">靠輔版規</button>
+            <div class="dropdown-content">
+                <a href="rules.html">版規條文</a>
+                <a href="disclaimer.html">免責聲明</a>
+            </div>
+        </div>
+
+        <a href="submit_gate.html">匿名投稿</a>
+        <a href="report.html">檢舉貼文</a>
+        <a href="faq.html">常見問題</a>
+
+        <a href="https://www.instagram.com/cb_fjsh?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
+            聯絡我們
+        </a>
+
+    </nav>
+
+</header>
+
+<body>
+
+    <div class="background"></div>
+
+    <!-- Sub-Hero -->
+    <section class="sub-hero">
+        <h1>匿名投稿</h1>
+        <p>分享你的想法，但也請理性發言</p>
+    </section>
+
+    <!-- 投稿卡片 -->
+    <section class="glass-card submit-card" id="submit-section">
+
+        <!-- 版規提示 -->
+        <div class="submit-rules-hint">
+            <h2>
+                投稿前請先閱讀
+                <a href="rules.html" class="inline-link">版規</a>
+            </h2>
+            <p class="submit-hint-text">
+                投稿為完全匿名，管理員看不到您的身份。<br>
+                投稿後請記下「回憶代碼」以便日後查詢或撤回。
+            </p>
+        </div>
+
+        <form class="submit-form" id="submit-form" novalidate>
+
+            <!-- 投稿文字 -->
+            <div class="form-group">
+
+                <label class="form-label" for="post-content">
+                    投稿內容
+                    <span class="form-required">*</span>
+                </label>
+
+                <textarea
+                    id="post-content"
+                    class="form-textarea"
+                    maxlength="10000"
+                    placeholder="輸入你想投稿的內容...（最多 10,000 字）"
+                    rows="8"
+                ></textarea>
+
+                <div class="char-counter">
+                    <span id="char-now">0</span>
+                    <span class="char-sep">/</span>
+                    <span class="char-max">10,000</span>
+                </div>
+
+            </div>
+
+            <!-- 圖片上傳 -->
+            <div class="form-group">
+
+                <!-- 隱藏的 file input -->
+                <input
+                    type="file"
+                    id="post-image"
+                    class="file-input-hidden"
+                    accept="image/*"
+                    multiple
+                    style="display:none;"
+                >
+
+                <!-- 附加圖片按鈕列 -->
+                <div class="attach-row">
+                    <button type="button" class="attach-btn" id="attach-image-btn">
+                        📎 附加圖片...
+                    </button>
+                    <span class="attach-hint">
+                        支援 JPG、PNG、GIF、WebP・每張 ≤ 10 MB・最多 5 張
+                    </span>
+                </div>
+
+                <!-- 圖片預覽清單 -->
+                <div class="image-preview-list" id="image-preview-list"></div>
+
+                <!-- 上傳進度條 -->
+                <div class="upload-progress-wrap" id="upload-progress-wrap">
+                    <div class="upload-progress-label">
+                        <span id="upload-progress-filename">上傳中...</span>
+                        <span id="upload-progress-pct">0%</span>
+                    </div>
+                    <div class="upload-progress-bar-bg">
+                        <div class="upload-progress-bar-fill" id="upload-progress-bar"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 錯誤訊息區 -->
+            <div class="form-error" id="form-error" role="alert" aria-live="polite"></div>
+
+            <!-- 提交按鈕 -->
+            <button
+                type="submit"
+                class="submit-btn submit-full-btn"
+                id="submit-btn"
+            >
+                <span class="btn-text">提交投稿</span>
+                <span class="btn-loading" aria-hidden="true">⏳ 送出中...</span>
+            </button>
+
+            <!-- 提交成功提示 -->
+            <div class="submit-success" id="submit-success" role="status" aria-live="polite">
+
+                <div class="success-icon">✅</div>
+
+                <h3>投稿已送出！</h3>
+
+                <p>請記下您的「回憶代碼」，可至
+                    <a href="https://www.crush.ninja/zh-tw/submissions/recall/"
+                       target="_blank" class="inline-link">
+                        投稿狀態查詢
+                    </a>
+                    頁面確認審核進度。
+                </p>
+
+                <div class="recall-code-box">
+                    <span class="recall-label">回憶代碼</span>
+                    <span class="recall-code" id="recall-code">──</span>
+                </div>
+
+                <button type="button" class="submit-btn" id="submit-again-btn">
+                    再次投稿
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+    <!-- 已發布投稿區 -->
+    <section class="posts-section" id="posts-section">
+
+        <div class="posts-header">
+            <h2 class="posts-title">📋 最新投稿</h2>
+            <p class="posts-subtitle">以下為管理員審核通過後發布的最新 5 則投稿</p>
+        </div>
+
+        <div class="posts-list" id="posts-list">
+
+            <!-- Post Card 1 -->
+            <article class="post-card glass-card" data-post-id="1">
+                <div class="post-card-header">
+                    <a href="https://www.instagram.com/cb_fjsh" target="_blank" class="post-author" aria-label="前往靠北輔中 4.0 Instagram">
+                        <img src="assets/logo.png" alt="靠北輔中 4.0" class="post-author-logo">
+                        <div class="post-author-info">
+                            <span class="post-author-name">靠北輔中 4.0</span>
+                            <span class="post-author-ig">@cb_fjsh</span>
+                        </div>
+                    </a>
+                    <div class="post-number">#靠北輔中001</div>
+                </div>
+                <div class="post-content">
+                    <p>今天午餐排隊排了 20 分鐘結果賣完了，真的是靠北，下次要早點去😭</p>
+                </div>
+                <div class="post-card-footer">
+                    <span class="post-submit-time">🕐 投稿時間：2025-10-20 08:42</span>
+                    <span class="post-publish-date">📅 發佈日期：2025-10-20</span>
+                </div>
+            </article>
+
+            <!-- Post Card 2 -->
+            <article class="post-card glass-card" data-post-id="2">
+                <div class="post-card-header">
+                    <a href="https://www.instagram.com/cb_fjsh" target="_blank" class="post-author">
+                        <img src="assets/logo.png" alt="靠北輔中 4.0" class="post-author-logo">
+                        <div class="post-author-info">
+                            <span class="post-author-name">靠北輔中 4.0</span>
+                            <span class="post-author-ig">@cb_fjsh</span>
+                        </div>
+                    </a>
+                    <div class="post-number">#靠北輔中002</div>
+                </div>
+                <div class="post-content">
+                    <p>匿名問一下大家覺得哪間教室冷氣最冷？我們班冷到不行，穿外套都沒用 🥶</p>
+                </div>
+                <div class="post-card-footer">
+                    <span class="post-submit-time">🕐 投稿時間：2025-10-21 12:05</span>
+                    <span class="post-publish-date">📅 發佈日期：2025-10-21</span>
+                </div>
+            </article>
+
+            <!-- Post Card 3 -->
+            <article class="post-card glass-card" data-post-id="3">
+                <div class="post-card-header">
+                    <a href="https://www.instagram.com/cb_fjsh" target="_blank" class="post-author">
+                        <img src="assets/logo.png" alt="靠北輔中 4.0" class="post-author-logo">
+                        <div class="post-author-info">
+                            <span class="post-author-name">靠北輔中 4.0</span>
+                            <span class="post-author-ig">@cb_fjsh</span>
+                        </div>
+                    </a>
+                    <div class="post-number">#靠北輔中003</div>
+                </div>
+                <div class="post-content">
+                    <p>某老師上課一直點我起來回答問題，但我真的沒在睡覺啊，只是在思考而已😤</p>
+                </div>
+                <div class="post-card-footer">
+                    <span class="post-submit-time">🕐 投稿時間：2025-10-22 15:33</span>
+                    <span class="post-publish-date">📅 發佈日期：2025-10-23</span>
+                </div>
+            </article>
+
+            <!-- Post Card 4 -->
+            <article class="post-card glass-card" data-post-id="4">
+                <div class="post-card-header">
+                    <a href="https://www.instagram.com/cb_fjsh" target="_blank" class="post-author">
+                        <img src="assets/logo.png" alt="靠北輔中 4.0" class="post-author-logo">
+                        <div class="post-author-info">
+                            <span class="post-author-name">靠北輔中 4.0</span>
+                            <span class="post-author-ig">@cb_fjsh</span>
+                        </div>
+                    </a>
+                    <div class="post-number">#靠北輔中004</div>
+                </div>
+                <div class="post-content">
+                    <p>靠北！聯考前一天學校還要求交作業，是在跟我開玩笑嗎？到底是誰想出來的規定 😡</p>
+                </div>
+                <div class="post-card-footer">
+                    <span class="post-submit-time">🕐 投稿時間：2025-10-24 22:10</span>
+                    <span class="post-publish-date">📅 發佈日期：2025-10-25</span>
+                </div>
+            </article>
+
+            <!-- Post Card 5 -->
+            <article class="post-card glass-card" data-post-id="5">
+                <div class="post-card-header">
+                    <a href="https://www.instagram.com/cb_fjsh" target="_blank" class="post-author">
+                        <img src="assets/logo.png" alt="靠北輔中 4.0" class="post-author-logo">
+                        <div class="post-author-info">
+                            <span class="post-author-name">靠北輔中 4.0</span>
+                            <span class="post-author-ig">@cb_fjsh</span>
+                        </div>
+                    </a>
+                    <div class="post-number">#靠北輔中005</div>
+                </div>
+                <div class="post-content">
+                    <p>有沒有人也很喜歡放學在校園裡亂晃？傍晚的輔中真的超漂亮，感謝大自然🍃</p>
+                </div>
+                <div class="post-card-footer">
+                    <span class="post-submit-time">🕐 投稿時間：2025-10-26 17:55</span>
+                    <span class="post-publish-date">📅 發佈日期：2025-10-26</span>
+                </div>
+            </article>
+
+        </div>
+
+    </section>
+
+    <script src="js/script.js"></script>
+
+</body>
+
+<footer>
+
+    <div class="footer-links">
+
+        <a href="submit_gate.html">匿名投稿</a>
+        <a href="report.html">檢舉貼文</a>
+        <a href="rules.html">版規條文</a>
+        <a href="faq.html">常見問題</a>
+
+        <a href="https://www.instagram.com/cb_fjsh?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
+            聯絡我們
+        </a>
+
+    </div>
+
+    <p class="footer-copy">
+        版權所有 &copy; 2026 靠北輔中 4.0
+    </p>
+
+</footer>
+
+
+</html>
